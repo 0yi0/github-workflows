@@ -1,0 +1,12 @@
+name: entry
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  entry:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo 'Entry ->'
+        shell: bash

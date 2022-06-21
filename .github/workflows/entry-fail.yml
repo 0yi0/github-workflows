@@ -1,0 +1,12 @@
+name: entry fail
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  entry:
+    runs-on: ubuntu-latest
+    steps:
+      - run: test
+        shell: bash

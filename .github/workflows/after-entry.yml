@@ -1,0 +1,12 @@
+name: after entry
+
+on:
+  workflow_run:
+    workflows: [ 'entry' ]
+    types: [ completed ]
+
+jobs:
+  after-entry:
+    uses: ./.github/workflows/call-workflow.yml
+    with:
+      source: 'after entry'

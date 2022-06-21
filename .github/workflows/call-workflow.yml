@@ -1,0 +1,22 @@
+name: call workflow
+
+on:
+  workflow_call:
+    inputs:
+      source:
+        type: string
+
+jobs:
+  call-workflow-success:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    steps:
+      - run: echo ${{ inputs.source }} Ok
+        shell: bash
+
+  call-workflow-failure:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'failure' }}
+    steps:
+      - run: echo ${{ inputs.source }} Error
+        shell: bash

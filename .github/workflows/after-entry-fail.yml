@@ -1,0 +1,12 @@
+name: after entry fail
+
+on:
+  workflow_run:
+    workflows: [ 'entry fail' ]
+    types: [ completed ]
+
+jobs:
+  after-entry-fail:
+    uses: ./.github/workflows/call-workflow.yml
+    with:
+      source: 'after entry fail'
