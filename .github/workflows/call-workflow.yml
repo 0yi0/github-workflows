@@ -1,0 +1,32 @@
+name: Reusable workflow
+
+on:
+  workflow_call:
+    inputs:
+      source:
+        type: string
+    outputs:
+      id:
+        value: ${{ jobs.call-workflow-success.outputs.id }}
+      source:
+        value: "SOME STRING" # ${{ inputs.source }}
+
+jobs:
+  call-workflow-success:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    steps:
+      - id: only
+        run: |
+          echo ${{ inputs.source }} Ok
+          echo ::set-output name=id::${{ github.event.workflow_run.check_suite_id }}
+        shell: bash
+    outputs:
+      id: ${{ steps.only.outputs.id }}
+
+  call-workflow-failure:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'failure' }}
+    steps:
+      - run: echo ${{ inputs.source }} Error && test
+        shell: bash

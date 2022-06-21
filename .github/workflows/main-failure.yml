@@ -1,0 +1,16 @@
+name: Entry failure
+
+on:
+  push:
+    paths:
+      - ".github/workflows/after-entry.yml"
+      - ".github/workflows/call-workflow.yml"
+      - ".github/workflows/main-success.yml"
+      - ".github/workflows/main-failure.yml"
+
+jobs:
+  entry:
+    runs-on: ubuntu-latest
+    steps:
+      - run: test
+        shell: bash

@@ -1,0 +1,21 @@
+name: Triggered workflow
+
+on:
+  workflow_run:
+    workflows:
+      - "Entry success"
+      - "Entry failure"
+    types: [completed]
+
+jobs:
+  triggered:
+    uses: ./.github/workflows/call-workflow.yml
+    with:
+      source: ${{ github.event.workflow_run.workflow_id }}
+
+  echo-output:
+    needs: triggered
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo ${{ needs.triggered.outputs.id }} ${{ needs.triggered.outputs.source }}
+        shell: bash

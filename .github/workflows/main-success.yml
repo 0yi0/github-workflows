@@ -1,0 +1,17 @@
+name: Entry success
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/after-entry.yml"
+      - ".github/workflows/call-workflow.yml"
+      - ".github/workflows/main-failure.yml"
+      - ".github/workflows/main-success.yml"
+
+jobs:
+  entry:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo 'Entry'
+        shell: bash
