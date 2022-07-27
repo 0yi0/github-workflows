@@ -2,7 +2,7 @@ name: entry fail
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, branch ]
 
 jobs:
   entry:
