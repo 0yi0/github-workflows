@@ -3,6 +3,12 @@ name: entry
 on:
   push:
     branches: [ main ]
+    paths:
+      - ".github/workflows/after-entry-fail.yml"
+      - ".github/workflows/after-entry.yml"
+      - ".github/workflows/call-workflow.yml"
+      - ".github/workflows/entry-fail.yml"
+      - ".github/workflows/entry.yml"
 
 jobs:
   entry:
