@@ -1,0 +1,14 @@
+name: Test path
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - ".github/workflows/**.yml"
+
+jobs:
+  test-path:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: echo ${{ hashFiles('.github/workflows/**.yml') }}
