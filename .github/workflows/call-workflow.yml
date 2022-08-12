@@ -9,7 +9,7 @@ on:
       id:
         value: ${{ jobs.call-workflow-success.outputs.id }}
       source:
-        value: "SOME STRING" # ${{ inputs.source }}
+        value: ${{ inputs.source }}
 
 jobs:
   call-workflow-success:
