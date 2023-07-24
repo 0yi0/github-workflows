@@ -1,0 +1,17 @@
+name: Call external actions
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/main-external.yml"
+
+jobs:
+  wasmmark:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: second-state/wasmmark@dev/workflows
+        with:
+          version: '0.12.1'
+          repeat: 1
+          verbose: true
