@@ -1,0 +1,22 @@
+name: Using JSON
+
+on:
+  workflow_call:
+    inputs:
+      runners:
+        type: string
+        required: true
+      group:
+        type: string
+        required: true
+
+jobs:
+  job:
+    strategy:
+      matrix: ${{ fromJSON(inputs.runners) }}
+    name: ${{ inputs.group }} on ${{ matrix.runner }}
+    runs-on: ${{ inputs.runner }}
+    steps:
+      - if: ${{ contains(matrix.groups, inputs.group) }}
+        run: |
+          echo Good ${{ inputs.group }} on ${{ matrix.runner }}
